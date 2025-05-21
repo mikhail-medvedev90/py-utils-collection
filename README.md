@@ -20,12 +20,5 @@ pip install -r requirements.txt
 ## Запуск тестов
 
 ```bash
-cd task1
-pytest
-
-cd task2
-pytest
-
-cd task3
 pytest
 ```

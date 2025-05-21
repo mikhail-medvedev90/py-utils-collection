@@ -1,7 +1,4 @@
-from typing import List, Tuple, Dict
-
-
-def merge_intervals(intervals: List[Tuple[int, int]]) -> List[Tuple[int, int]]:
+def merge_intervals(intervals: list[tuple[int, int]]) -> list[tuple[int, int]]:
     """Объединяет пересекающиеся или смежные интервалы."""
     if not intervals:
         return []
@@ -13,10 +10,10 @@ def merge_intervals(intervals: List[Tuple[int, int]]) -> List[Tuple[int, int]]:
             merged[-1][1] = max(last[1], current[1])
         else:
             merged.append(list(current))
-    return [tuple(i) for i in merged]
+    return [(i[0], i[1]) for i in merged]
 
 
-def crop_and_merge(intervals_list: List[int], lesson_start: int, lesson_end: int) -> List[Tuple[int, int]]:
+def crop_and_merge(intervals_list: list[int], lesson_start: int, lesson_end: int) -> list[tuple[int, int]]:
     """Обрезает интервалы по уроку и объединяет их."""
     pairs = list(zip(intervals_list[::2], intervals_list[1::2]))
     cropped = []
@@ -28,7 +25,7 @@ def crop_and_merge(intervals_list: List[int], lesson_start: int, lesson_end: int
     return merge_intervals(cropped)
 
 
-def intersect(a: List[Tuple[int, int]], b: List[Tuple[int, int]]) -> List[Tuple[int, int]]:
+def intersect(a: list[tuple[int, int]], b: list[tuple[int, int]]) -> list[tuple[int, int]]:
     """Находит пересечения двух списков интервалов."""
     i = j = 0
     result = []
@@ -46,7 +43,7 @@ def intersect(a: List[Tuple[int, int]], b: List[Tuple[int, int]]) -> List[Tuple[
     return result
 
 
-def appearance(intervals: Dict[str, List[int]]) -> int:
+def appearance(intervals: dict[str, list[int]]) -> int:
     """
     Возвращает время общего присутствия ученика и учителя на уроке (в секундах).
     """

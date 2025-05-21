@@ -1,5 +1,5 @@
 import pytest
-from solution import appearance
+from solution_3 import appearance
 
 TEST_CASES = [
     {

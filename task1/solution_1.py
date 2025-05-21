@@ -1,4 +1,4 @@
-def strict(func):
+def strict(func: callable) -> callable:
     """
     Декоратор для строгой проверки типов аргументов функции согласно её аннотациям.
     При вызове обёрнутой функции проверяет, что каждый переданный аргумент соответствует
@@ -13,9 +13,10 @@ def strict(func):
         Callable: Обёрнутую функцию с проверкой типов.
     """
 
-    def wrapper(*args):
+    def wrapper(*args: tuple) -> any:
         annotations = func.__annotations__
-        for arg, (name, expected_type) in zip(args, annotations.items()):
+        for arg, annotation in zip(args, annotations.items()):
+            name, expected_type = annotation
             if not isinstance(arg, expected_type):
                 raise TypeError(f"Аргумент {name} ожидается {expected_type}, а получен {type(arg)}")
         return func(*args)
